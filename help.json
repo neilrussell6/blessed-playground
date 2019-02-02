@@ -1,0 +1,4 @@
+{
+  "setup": "setup project",
+  "start": "run application"
+}
