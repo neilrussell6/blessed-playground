@@ -6,7 +6,8 @@
   "scripts": {
     "help": "package-json-help.js",
     "_setup:env": "cp .env.local .env",
-    "setup": "npm-run-all _init:env",
+    "_setup:dependencies": "npm i",
+    "setup": "npm-run-all -p _setup:env _setup:dependencies",
     "start": "dotenv -e .env node src/index.js"
   },
   "keywords": [],
