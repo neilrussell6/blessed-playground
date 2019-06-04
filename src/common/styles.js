@@ -3,7 +3,7 @@ const { theme } = require('./color-themes')
 const styleBox = {
   style: {
     bg: 0,
-    fg: theme['3'],
+    fg: theme['1'],
     label: {
       bg: 0,
       fg: theme['2'],

@@ -8,8 +8,8 @@ const Demo = require('./modules/Demo')
 // --------------------------------------
 
 const screen = blessed.screen(Common.screen())
-screen.title = 'BlessedJS Playground'
-const heading = blessed.box(Common.heading({ content: ' Blessed Playground' }))
+screen.title = 'Transaction History'
+const heading = blessed.box(Common.heading({ content: ' Demo' }))
 screen.append(heading)
 
 // --------------------------------------
@@ -19,19 +19,20 @@ screen.append(heading)
 // demo
 
 const renderDemo = () => {
-  const { view, table } = Demo()
+  const { view } = Demo()
   const wrapperView = blessed.box({
     width: '90%',
-    height: '80%',
+    height: '70%-4',
     tags: true,
     top: 4,
     left: 'center',
   })
   wrapperView.append(view)
-  return { view: wrapperView, table }
+  return { view: wrapperView }
 }
 
 const { view: demoView } = renderDemo()
+
 screen.append(demoView)
 
 // --------------------------------------
