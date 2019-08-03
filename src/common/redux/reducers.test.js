@@ -5,16 +5,15 @@ const parametrize = require('js-parametrize')
 const SUT = require('./reducers')
 
 describe('common/redux/reducers', () => {
-  describe('updateItemByIndexWith', () => {
+  describe('overwriteStateWithPayload', () => {
     parametrize([
-      [['a'], { data: 'x', index: 0 }, ['x']],
-      [['a', 'b'], { data: 'x', index: 0 }, ['x', 'b']],
-      [['a', 'b'], { data: 'x', index: 1 }, ['a', 'x']],
-      [['a', 'b', 'c'], { data: 'x', index: 1 }, ['a', 'x', 'c']],
+      ['EXISTING', 'NEW', 'NEW'],
+      [['a', 'b'], ['c'], ['c']],
+      [{ a: 'A' }, { b: 'B' }, { b: 'B' }],
     ], (state, payload, expected) => {
-      it('should update item at provided index if predicate passes', () => {
+      it('should overwrite state with provided payload', () => {
         const action = { type: 'NA', payload }
-        const result = SUT.updateItemByIndexWith(R.T)(state, action)
+        const result = SUT.overwriteStateWithPayload(state, action)
         assert.deepEqual(result, expected)
       })
     })

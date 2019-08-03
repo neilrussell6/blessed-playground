@@ -1,6 +1,14 @@
 const R = require('ramda')
 
 //---------------------------------
+// overwrite state with payload
+//---------------------------------
+
+const overwriteStateWithPayload = R.uncurryN(2, state => R.prop('payload'))
+
+module.exports.overwriteStateWithPayload = overwriteStateWithPayload
+
+//---------------------------------
 // update item with
 // ... assumes state is item
 // ... assumes payload { data }

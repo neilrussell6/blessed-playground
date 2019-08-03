@@ -17,11 +17,13 @@ const logger = ({ getState }) => {
 }
 
 const { reducer: functions } = require('../../modules/Functions')
+const { reducer: selectedFunction } = require('../../modules/SelectedFunction')
 const { reducer: message } = require('../../modules/Message')
 
 const configureStore = () => {
   const reducer = combineReducers({
     functions,
+    selectedFunction,
     message,
   })
   // return createStore(reducer, {}, applyMiddleware(logger))

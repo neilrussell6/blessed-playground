@@ -10,19 +10,23 @@ const {
 const selector = createSelector([R.identity], R.pipe(
   R.applySpec({
     functions: R.compose(R.map(x => eval(x)), R.prop('functions')),
+    selectedFunction: R.prop('selectedFunction'),
   }),
   R.applySpec({
     functions: R.prop('functions'),
+    selectedFunction: R.prop('selectedFunction'),
     argNames: R.compose(R.take(R.__, ARG_NAMES), R.length, R.head, R.prop('functions')),
     functionNames: R.compose(R.take(R.__, FUNCTION_NAMES), R.length, R.prop('functions')),
   }),
   R.applySpec({
     functions: R.prop('functions'),
+    selectedFunction: R.prop('selectedFunction'),
     header: R.compose(R.map(R.join(' ')), R.values, R.pick(['argNames', 'functionNames'])),
     truthTables: R.compose(R.map(utils.buildTruthTable), R.prop('functions')),
   }),
   R.applySpec({
     functions: R.prop('functions'),
+    selectedFunction: R.prop('selectedFunction'),
     header: R.prop('header'),
     body: R.pipe(
       R.prop('truthTables'),
@@ -46,6 +50,7 @@ const selector = createSelector([R.identity], R.pipe(
     ),
   }),
   R.applySpec({
+    selectedFunctionIndex: R.prop('selectedFunction'),
     functionCount: R.compose(R.length, R.prop('functions')),
     header: R.prop('header'),
     body: R.prop('body'),

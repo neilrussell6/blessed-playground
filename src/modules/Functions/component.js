@@ -32,16 +32,14 @@ const init = ({ parent, functions, onSubmit, onFocus }) => {
     })
     const nameBox = blessed.box({
       style: {
-        // fg: i === 0 ? theme['3'] : theme['2'],
-        fg: i === selectedIndex ? theme['3'] : theme['1'],
+        fg: i === selectedIndex ? theme['4'] : theme['3_faded'],
       },
       content: fNames[i],
     })
     const divBox = blessed.box({
       left: 3,
       style: {
-        // fg: theme['1'],
-        fg: i === selectedIndex ? theme['3'] : theme['1'],
+        fg: i === selectedIndex ? theme['3_faded'] : theme['1'],
       },
       content: '\u2502',
     })
@@ -62,7 +60,7 @@ const init = ({ parent, functions, onSubmit, onFocus }) => {
       style: {
         fg: theme['2'],
         focus: {
-          fg: theme['3'],
+          fg: theme['4'],
         }
       },
       value: f.toString(),
@@ -85,8 +83,8 @@ const init = ({ parent, functions, onSubmit, onFocus }) => {
       selectedIndex++
       form.children[selectedIndex].focus()
       R.addIndex(R.forEach)((x, i) => {
-        x.children[0].style.fg = i === selectedIndex ? theme['3'] : theme['1']
-        x.children[1].style.fg = i === selectedIndex ? theme['3'] : theme['1']
+        x.children[0].style.fg = i === selectedIndex ? theme['4'] : theme['3_faded']
+        x.children[1].style.fg = i === selectedIndex ? theme['3_faded'] : theme['1']
       }, elements)
     }
     onFocus(selectedIndex)
@@ -98,8 +96,8 @@ const init = ({ parent, functions, onSubmit, onFocus }) => {
       selectedIndex--
       form.children[selectedIndex].focus()
       R.addIndex(R.forEach)((x, i) => {
-        x.children[0].style.fg = i === selectedIndex ? theme['3'] : theme['1']
-        x.children[1].style.fg = i === selectedIndex ? theme['3'] : theme['1']
+        x.children[0].style.fg = i === selectedIndex ? theme['4'] : theme['3_faded']
+        x.children[1].style.fg = i === selectedIndex ? theme['3_faded'] : theme['1']
       }, elements)
     }
     onFocus(selectedIndex)
