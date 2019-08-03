@@ -28,7 +28,7 @@ module.exports.actions = {
 // action creators
 //---------------------------------
 
-const updateFunction = payload => ({ type: UPDATE_FUNCTION, payload })
+const updateFunction = ({ index, data }) => ({ type: UPDATE_FUNCTION, payload: { index, data } })
 
 module.exports.actionCreators = {
   updateFunction,
