@@ -1,5 +1,5 @@
-const { endpoint } = require('../../common/redux/utils.js')
-const { updateItemByIndexWith } = require('../../common/redux/reducers.js')
+const { endpoint } = require('../../common/redux/utils')
+const { updateItemByIndexWith } = require('../../common/redux/reducers')
 const utils = require('./utils')
 
 //---------------------------------
@@ -20,8 +20,11 @@ const INITIAL_STATE = [
 
 const UPDATE_FUNCTION = 'app/Functions/UPDATE_FUNCTION'
 
+const FOCUS_FUNCTION = 'app/Functions/FOCUS_FUNCTION'
+
 module.exports.actions = {
   UPDATE_FUNCTION,
+  FOCUS_FUNCTION,
 }
 
 //---------------------------------
@@ -30,8 +33,11 @@ module.exports.actions = {
 
 const updateFunction = ({ index, data }) => ({ type: UPDATE_FUNCTION, payload: { index, data } })
 
+const focusFunction = index => ({ type: FOCUS_FUNCTION, payload: index })
+
 module.exports.actionCreators = {
   updateFunction,
+  focusFunction,
 }
 
 //---------------------------------

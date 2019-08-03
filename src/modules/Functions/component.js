@@ -7,7 +7,7 @@ const { theme } = require('../../common/color-themes')
 // init
 // --------------------------------------
 
-const init = ({ parent, functions, onSubmit }) => {
+const init = ({ parent, functions, onSubmit, onFocus }) => {
   const view = blessed.box({
     left: 1,
   })
@@ -89,7 +89,7 @@ const init = ({ parent, functions, onSubmit }) => {
         x.children[1].style.fg = i === selectedIndex ? theme['3'] : theme['1']
       }, elements)
     }
-
+    onFocus(selectedIndex)
     parent.render()
   })
 
@@ -102,7 +102,7 @@ const init = ({ parent, functions, onSubmit }) => {
         x.children[1].style.fg = i === selectedIndex ? theme['3'] : theme['1']
       }, elements)
     }
-
+    onFocus(selectedIndex)
     parent.render()
   })
 
