@@ -1,45 +1,94 @@
 const blessed = require('blessed')
+// const R = require('ramda')
 
+const { configureStore } = require('./common/redux/store.js')
 const Common = require('./common/components')
-const Demo = require('./modules/Demo')
+const { Component: Functions } = require('./modules/Functions')
+const { Component: TruthTable } = require('./modules/TruthTable')
+const { Component: Message } = require('./modules/Message')
+// const Help = require('./modules/Help')
+// const Message = require('./modules/Message')
 
 // --------------------------------------
 // screen
 // --------------------------------------
 
 const screen = blessed.screen(Common.screen())
-screen.title = 'Transaction History'
-const heading = blessed.box(Common.heading({ content: ' Demo' }))
+screen.title = 'BOOLEAN LOGIC'
+const heading = blessed.box(Common.heading({ content: ' BOOLEAN LOGIC' }))
 screen.append(heading)
 
 // --------------------------------------
 // view layout
 // --------------------------------------
 
-// demo
+// const renderHelp = () => {
+//   const { view } = Help({})
+//   const wrapperView = blessed.box({
+//     height: 3,
+//     width: '100%',
+//     tags: true,
+//     bottom: 0,
+//     left: 'center',
+//   })
+//   wrapperView.append(view)
+//   return { view: wrapperView }
+// }
+//
+// const renderMessage = (data) => {
+//   const { view } = Message(data)
+//   const wrapperView = blessed.box({
+//     height: 3,
+//     width: '100%',
+//     tags: true,
+//     bottom: 0,
+//     left: 'center',
+//   })
+//   wrapperView.append(view)
+//   return { view: wrapperView }
+// }
 
-const renderDemo = () => {
-  const { view } = Demo()
-  const wrapperView = blessed.box({
-    width: '90%',
-    height: '70%-4',
-    tags: true,
-    top: 4,
-    left: 'center',
-  })
-  wrapperView.append(view)
-  return { view: wrapperView }
-}
+// const { view: functionsView, form: functionsForm } = Functions(store, screen)
+// const { view: truthTableView } = TruthTable(store, screen)
 
-const { view: demoView } = renderDemo()
+const store = configureStore()
 
-screen.append(demoView)
+Functions(store)(screen)
+TruthTable(store)(screen)
+Message(store)(screen)
+
+// const { view: helpView } = renderHelp()
+// let messageView = null
+// let hasMessageView = false
+//
+// // screen.append(functionsView)
+// // screen.append(truthTableView)
+// screen.append(helpView)
 
 // --------------------------------------
-// events
+// state changes
 // --------------------------------------
 
-// ...
+// functionsForm.on('submit', (data, ...args) => {
+//   if (hasMessageView) {
+//     screen.remove(messageView)
+//   }
+//
+//   try {
+//     const { view: truthTableView } = renderTruthTable(R.values(data))
+//     screen.append(truthTableView)
+//   } catch (e) {
+//     const message = e.message
+//     if (message) {
+//       const { view } = renderMessage({ type: 'error', message })
+//       messageView = view
+//       screen.append(messageView)
+//       hasMessageView = true
+//     }
+//   }
+//
+//   screen.render()
+// })
 
 // --------------------------------------
 // ...

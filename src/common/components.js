@@ -1,12 +1,25 @@
 const R = require('ramda')
 
-const { styleHeading } = require('./styles')
+const { theme } = require('./color-themes')
+const { buildStyleHeading } = require('./styles')
+
+const styleHeading = buildStyleHeading(theme)
+
+// --------------------------------------
+// screen
+// --------------------------------------
 
 const screen = () => ({
   smartCSR: true,
   autoPadding: false,
   terminal: 'xterm-256color',
 })
+
+module.exports.screen = screen
+
+// --------------------------------------
+// heading
+// --------------------------------------
 
 const heading = (extra = {}) => R.mergeDeepRight({
   height: 4,
@@ -20,7 +33,4 @@ const heading = (extra = {}) => R.mergeDeepRight({
   ...extra,
 }, styleHeading)
 
-module.exports = {
-  screen,
-  heading,
-}
+module.exports.heading = heading
